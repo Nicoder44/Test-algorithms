@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset ="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TOOLVES.COM</title>
+
+	<link rel = "stylesheet" href="TOOLVES_elements/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="TOOLVES_elements/TOOLVES.css">
+</head>
+<header class="container-fluid header">
+	<a style="position: absolute;top:40px;left:90%;" href="Page_Principale.html">Accueil</a>
+	<div class="container">
+		<img style ="width:20%; height:auto; float:left;" src="TOOLVES_elements/Polytech_Angers.png">
+		<h1 style="font-size: 150%; position:absolute;position: absolute;top: 30px; left: 50%;transform: translate(-50%, -50%);">Bienvenue - Compte rendu semestre 3</h1>
+	</div>
+	</header>
+
+<body class = "background">
+		<div class="fantome">
+			<h1 id="txt1" >Tic-Tac-Toe</h1>
+			<section class="block1" id="jeu">
+				<div id = "0" class="case"></div>
+				<div id = "1" class="case"></div>
+				<div id = "2" class="case"></div>
+				<div id = "3" class="case"></div>
+				<div id = "4" class="case"></div>
+				<div id = "5" class="case"></div>
+				<div id = "6" class="case"></div>
+				<div id = "7" class="case"></div>
+				<div id = "8" class="case"></div>
+			</section>
+			<h2 id="txt1">Vous jouez contre l'IA</h2>
+			<button style="position:absolute;top:20%;left:25%;" class = "stylax" id="play.ia">Jouer en JCJ</button>
+		</div>
+
+
+		<div class="fantome2 visible">
+			<h1 id="txt1" >Tic-Tac-Toe</h1>
+			<section class="block1" id="jeu">
+				<div data-index="0" class="cell"></div>
+				<div data-index="1" class="cell"></div>
+				<div data-index="2" class="cell"></div>
+				<div data-index="3" class="cell"></div>
+				<div data-index="4" class="cell"></div>
+				<div data-index="5" class="cell"></div>
+				<div data-index="6" class="cell"></div>
+				<div data-index="7" class="cell"></div>
+				<div data-index="8" class="cell"></div>
+			</section>
+			<h3 id="txt1">Vous jouez contre l'IA</h3>
+			<button style="position:absolute;top:20%;left:25%;" class = "stylax" id="play.ia2">Jouer contre l'IA</button>
+		</div>
+
+		
+	
+	
+	
+	<button style="position:absolute;top:30%;left:25%;" class = "stylax" id="retry" onclick="InitGame();">Nouvelle Game</button>
+	<a style="position:absolute;top:40%;left:25%;" class="stylax" href="Page_Principale.html">Annexes</a>
+	
+	<div class="container-fluid">
+		<div class="container">
+			<article>
+				<details><summary>Details de ce TD</summary>
+				<p>
+					Cette page est composée de deux division comprenant chacune un morpion.<br>
+					<br>
+					Le premier est le morpion JCJ (Joueur contre Joueur) que j'ai pu coder dès la première séance de TD, avec l'aide d'un tutoriel sur youtube, n'ayant aucune connaissance du javascript à ce moment.
+					<br><br>
+					Le second morpion, jouable en cliquant sur le bouton "JOUER CONTRE L'IA", a été bien plus fastidieux à créer. 
+					Il n'est normalement pas possible de gagner contre l'IA, j'ai d'ailleurs passé deux journées entières dessus à la fin car je m'étais trompé dans l'appel de MINMAX (ligne 150, j'avais mis Joueur au lieu de User, et le programme fonctionnait, simplement
+					il ne faisait pas la différence entre une égalité en fin de partie et une victoire de l'utilisateur, mais à part cela il jouait de manière optimale sauf pour son dernier coup dans certains cas, je n'ai toujours pas compris pourquoi ce changement de variable avait cet effet)
+					Vous pourrez remarquer que le programme à encore un problème que je n'ai pas résolu : si vous jouez par exemple la deuxieme case de la premiere colonne,
+					puis la deuxieme case de la premiere ligne, puis la troisieme case de la deuxieme ligne, le programme gagne mais pas de la manière la plus rapide, mais j'y avais déja passé
+					beaucoup de temps alors je me suis dit que ce n'était pas dramatique.<br>
+					Ce problème vient du fait que mon programme n'est pas exactement construit comme demandé dans le TD : il n'inclut pas de profondeur, ni de fonction d'évaluation, il descend immédiatement au bout de l'arbre et trouve toutes les feuilles,
+					on va dire que ca tient la route pour un morpion, mais j'ai conscience que pour un jeu tel que les échecs par exemple, il serait impensable d'utiliser une telle fonction.<br>
+					MINMAX parcout donc l'arbre, et tout comme dans le cours, donne la valeur 1 aux chemins qui aboutissent à une victoire de l'IA, -1 aux chemins qui aboutissent à une victoire du joueur et 0 pour les égalités.<br>
+					C'est pour cela que le programme ne fait pas la différence entre une victoire et une vicoire plus rapide, car lorsque deux cases obtiennent le score de 1, il en joue une au hasard (celle avec le plus faible indice en l'occurence dans ce programme).
+					J'explique ce bug dans la vidéo sur la page d'accueil.
+					<br><br>
+					Merci pour votre lecture, ces TD m'auront bien occupé pendant le confinement, j'ai beaucoup apprécié apprendre un nouveau langage !
+				</p>
+				</details>
+			</article>
+		</div>
+	</div>
+	<script src="TOOLVES_elements/IA-TOOLVES.js"></script>
+	<script src="TOOLVES_elements/TOOLVES.js"></script>
+	<script>
+		const buzzer = document.getElementById("play.ia");
+		const buzzer2 = document.getElementById("play.ia2");
+		const text = document.querySelector('.fantome');
+		const text2 = document.querySelector('.fantome2');
+
+		buzzer.addEventListener('click', () => {
+			text.classList.toggle('visible');
+			text2.classList.toggle('visible');
+		});
+
+		buzzer2.addEventListener('click', () => {
+			text2.classList.toggle('visible');
+			text.classList.toggle('visible');
+		});
+	</script>
+
+		<div class="background">
+			<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+		<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+		<span></span><span></span><span></span><span></span><span></span><span></span></div>
+</body>
+</html>

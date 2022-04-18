@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset ="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MACE Nicolas</title>
+	
+	<link rel="stylesheet" href="TOOLVES_elements/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="TOOLVES_elements/TOOLVES.css">
+</head>
+
+<header class="container-fluid header">
+<div class="container">
+	<img style ="width:20%; height:auto; float:left;" src="TOOLVES_elements/Polytech_Angers.png">
+	<h1 style="font-size: 150%; position:absolute;position: absolute;top: 30px; left: 50%;transform: translate(-50%, -50%);">Bienvenue - Compte rendu semestre 3</h1>
+	<nav class = "menu">
+		<a href="#">Accueil</a>
+		<a href="#video">Vidéo de présentation</a>
+		<a href="#lesTD">Les TD</a>
+		
+	</nav>
+	
+</div>
+</header>
+
+<section class="container-fluid banner">
+	
+		<img src="TOOLVES_elements/23324.jpg" id="supertest">
+		<img src="TOOLVES_elements/html-css-js.png" style="width: 30%;height: auto;" id="testinou">
+		<p id="grantest">Par Nicolas Macé</p>
+	
+</section>
+
+
+<script>
+	let supertest = document.getElementById("supertest");
+	let text = document.getElementById("grantest");
+	let testinou = document.getElementById("testinou");
+	window.addEventListener('scroll', function(){
+		var value = window.scrollY;
+
+		supertest.style.top = value*0.25 + 'px';
+		testinou.style.left = value + 'px';
+		testinou.style.top = value + 'px';
+		text.style.left = value + 'px';
+		
+	})
+</script>
+
+
+<section class="container-fluid about" id="lesTD">
+	<br>
+	<div class="container">
+		<div class="row">
+			<article id="blog"class="col-md-12 col-lg-4 col-sm-12 block1">
+				<h2 id = "txt1">1)Fibonacci</h2>
+					<p>
+						Sur cette page se trouvent quatre petites fonctions, permettant de trouver des termes de la suite de fibonacci, et d'utiliser le codage et le décodage de Fibonacci sur une phrase comprenant les signes de la table ASCII
+					</p>
+					<a class="annexlink" href="TD1.html">Fibonacci et récursivité</a>
+			</article>
+			<article id="blog"class="col-md-12 col-lg-4 col-sm-12 block1">
+				<h2 id = "txt1">2)Huffman</h2>
+					<p>
+					Sur cette page, vous pourrez utiliser un codage de Huffman sur des trucs très simples (vraiment très simple, tels que "Entrez une chaine")<br><br><br><br>
+					</p>
+					<a class="annexlink" href="TD2.html">Codage de Huffman</a>
+			</article>
+			<article id="blog"class="col-md-12 col-lg-4 col-sm-12 block1">
+				<h2 id = "txt1">3)Arithmétique</h2>
+					<p>
+					Sur cette page vous pourrez passer d'une expression infixe parenthésée comprenant des chiffres, parenthèses et opérateurs à une expression postfixe, puis évaluer celle-ci.<br><br><br>
+					</p>
+					<a class="annexlink" href="TD3.html">Evaluation arithmétique</a>
+			</article>
+			<article class="col-md-12 col-lg-4 col-sm-12"></article>
+
+			<article id="blog"class="col-md-12 col-lg-4 col-sm-12 block1">
+				<h2 id = "txt1">4)MINMAX</h2>
+					<p>
+					Sur cette page vous pourrez jouer au morpion à deux ou contre une IA (invincible).</br></br></br></br>
+					</p>
+					<a class="annexlink" href="TD4.html">Algorithme MINMAX</a>
+			</article>
+			<article class="col-md-12 col-lg-4 col-sm-12"></article>
+		</div>
+	</div>
+</section>
+
+
+<section class="container-fluid portfolio" id="video">
+	<div class="container"><br>
+		<h2 id ="txt1">VIDEO DE PRESENTATION DE CE COMPTE RENDU</h2>
+		<video src="TOOLVES_elements/Présentation_TD.mp4" width=90%  height=auto controls poster="TOOLVES_elements/Capture.PNG"></video>
+		<p>Petit sommaire car c'est un peu long :<br>
+		0 - 51 : Intro<br>
+		51 - 3,26 : Bug de Huffman<br>
+		3,50 - 7,20 : Optimisation temps morpion<br>
+		7,36 : Remerciement<br>
+	</p>
+	</div>
+</section>
+
+
+<section class="container-fluid ">
+	<div class="container">
+		<div class="row">
+			<article>
+				<br><br><br>
+			</article>
+		</div>
+	</div>
+</section>
+
+<footer class="container-fluid footer">
+	
+</footer>
+<body class="2">
+
+</body>
+
+
+
+

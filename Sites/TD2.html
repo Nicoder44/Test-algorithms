@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset ="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MACE Nicolas</title>
+	
+	<link rel="stylesheet" href="TOOLVES_elements/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="TOOLVES_elements/TOOLVES.css">
+</head>
+<script src="TOOLVES_elements/TOOLVES_Huffman.js"></script>
+<header class="container-fluid header">
+	<a style="position: absolute;top:40px;left:90%;"class="stylax"href="Page_Principale.html">Accueil</a>
+	<div class="container">
+		<img style ="width:20%; height:auto; float:left;" src="TOOLVES_elements/Polytech_Angers.png">
+		<h1 style="font-size: 150%; position:absolute;position: absolute;top: 30px; left: 50%;transform: translate(-50%, -50%);">Bienvenue - Compte rendu semestre 3</h1>
+	</div>
+</header>
+<div class="background">
+	<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+<span></span><span></span><span></span><span></span><span></span><span></span></div>
+<body>
+    <h1>Bienvenue dans cet espace dédié aux travaux sur Huffman</h1>
+<br>
+<div class="container-fluid">
+    <div class ="container">
+        <p>Dans ce TD, notre objectif sera de proposer un code qui fournit un codage de Huffman à partir d'une phrase.</p>
+    <br>
+    <p>
+        Pour nous aider, on dispose des questions 1 à 10, que nous éluciderons dans les balises details
+    </p>
+    <details><summary>Explications supplémentaires/réponses aux questions du TD</summary>
+    <p class="k">
+         Question 1: Un fichier contenant 100 000 caractères codés en ASCII pèse 800 000 bits.<br><br>
+         Question 2: S'il n'y a que 6 caractères distincts, on peut utiliser seulement 3 bits pour les coder, j'explique comment trouver cela dans la question 3.<br><br>
+         Question 3: Je ne sais pas si une formule mathématique le décrit (surement) mais de toute facon il suffit de parcourir les puissances de deux jusqu'à avoir assez de bits pour coder le nombre de caractères donc une simple boucle comme celle ci suffit (function trouverlenombre() dans le code source):
+    </p>
+    </p>
+    </details>
+        
+       
+        <form name="Question3">
+            <p>Fonction qui donne le nombre de bits à utiliser en fonction du nombre de caractères sans Huffman:</p>
+            <input style ="text-align: center;" type = "text" value = "Nombre de caractères"name="nom" size = x maxlength = y>
+            <input type="button" id = "bouton" class="btn" value = "C'est parti" onclick = "(sertarien(document.Question3.nom.value))">
+            <input style ="text-align: center;" type = "text" value = "Bits nécessaires"name="nom2" size = x maxlength = y>
+        </form>
+    <details><summary>Explications supplémentaires/réponses aux questions du TD</summary>
+    <p class="k">
+        Question 4: Grace à cette fonction, pour 6 caractères distincts on obtient pour le meme fichier un poids de 300 000 bits, soit un gain de 62.5%<br><br>
+        On a de la chance car ce td est beaucoup plus guidé que celui sur l'algorithme MinMax, on nous indique maintenant que l'algorithme va devoir utiliser une table d'occurence de la fréquence d'apparition des caractères<br>
+        Il faut donc rentrer une chaîne, et avoir une fonction qui créé un tableau comprenant tous les caractères qui apparaissent au moins une fois dans la chaîne. Une fois que ce tableau a été créé, on va le parcourir et compter le nombre d'apparition dans la chaine de chacun de ces caractères, et créer un deuxième tableau qui stockera ces nombres d'apparition au meme index que la lettre.
+        Je débute donc dans le code source la fonction Occurences(chaine), qui créera une table des occurences.
+    </p>  
+    </details>
+    <br>
+    
+    <form name="Question4">
+        <p>Fonction qui effectue un codage de Huffman sur une chaine</p>
+        <input style ="text-align: center;" type = "text" value = "Entrez une chaine"name="input" size = x maxlength = y><br>
+        <input type="button" id = "bouton" class="btn" value = "C'est parti pour Huffman" onclick = "(Occurence(document.Question4.input.value))"><input type="button" class="btn" value ="Réinitialiser" onclick="Reset()"><br>
+        <br><p>On génère dans un premier temps une table triée des occurences</p>
+        <input style ="text-align: center;" type = "text" value = "[ E : 1 ]  [ t : 1 ]  [ r : 1 ]  [ z : 1 ]  [ u : 1 ]  [ c : 1 ]  [ h : 1 ]  [ a : 1 ]  [ i : 1 ]  [   : 2 ]  [ e : 3 ]  [ n : 3 ]"name="output" size = x maxlength = y class="form-control">
+    </form>
+    <br>
+    <details><summary>Explications supplémentaires/réponses aux questions du TD</summary>
+    <p class="k">
+        Question 5 et 6: On nous explique maintenant que le codage de Huffman utilise la table d'occurences (nous avons donc codé une fonction qui nous permet d'obtenir cette table)
+        afin d'attribuer un code à chacun des caractères. Le but est ici d'être sans préfixe, cela oblige a augmenter le nombre de bits pour certains caracteres mais on choisit ceux qui apparaissent le moins :
+        On devine que plus le fichier est de taille importante, plus cette technique sera avantageuse par rapport à celle de la question 3.<br><br>
+        Pour notre fichier exemple, le poids passe donc de 300 000 bits à 224 000 bits, ce qui correspond à environ 25% de gain, par rapport à la question 3 et 72% par rapport à la question 1.
+    
+        <br><br>
+        Question 7: Les lettres codées par 101100001101 sont BCAAE.
+        <br><br>
+        Question 8: On nous explique maintenant comment trouver un arbre de Huffman, qui nous permet ensuite de réaliser notre code en le parcourant
+        à l'envers à partir des feuilles et en donnant comme valeur 0 aux fils gauches et 1 aux droits (c'est ce qui est proposé dans l'exemple en tout cas).<br>
+        Pour répondre à la question 8 tout de même, l'arbre du mot "POLYTECH" est trivial puisqu'il n'y a qu'un caractère distinct de chaque. Nous allons poursuivre notre fonction Occurence afin qu'après avoir trouvé la table, elle implémente l'arbre correspondant (en fait la fonction Ocurrence va faire tout le codage)
+    </details>
+    <p>On génère ensuite tous les noeuds de l'arbre de huffman, ainsi que ses feuilles, il faut bien gérer le tri de ses tableaux</p>
+    <form name=noeuds>
+        <textarea type="text" class="form-control" style="height: 180px;" name="output">
+(Noeud 0[valeur :17 caracteres :i rzEthaucen])(Noeud 1[valeur :10 caracteres :haucen])(Noeud 2[valeur :7 caracteres :i rzEt])(Noeud 3[valeur :6 caracteres :en])(Feuille 1[valeur :3 caracteres :n])(Feuille 2[valeur :3 caracteres :e])(Noeud 4[valeur :4 caracteres :hauc])(Noeud 5[valeur :4 caracteres :rzEt])(Noeud 6[valeur :3 caracteres :i ])(Feuille 3[valeur :2 caracteres : ])(Feuille 4[valeur :1 caracteres :i])(Noeud 7[valeur :2 caracteres :ha])(Feuille 5[valeur :1 caracteres :a])(Feuille 6[valeur :1 caracteres :h])(Noeud 8[valeur :2 caracteres :uc])(Feuille 7[valeur :1 caracteres :c])(Feuille 8[valeur :1 caracteres :u])(Noeud 9[valeur :2 caracteres :rz])(Feuille 9[valeur :1 caracteres :z])(Feuille 10[valeur :1 caracteres :r])(Noeud 10[valeur :2 caracteres :Et])(Feuille 11[valeur :1 caracteres :t])(Feuille 12[valeur :1 caracteres :E])   
+        </textarea>
+    </form>
+    
+    
+    <details><summary style="font-size: 15px;">Explications supplémentaires/réponses aux questions du TD</summary>
+    <p class="k">
+        Mon noeud 0 correspond à la racine, et l'arbre est crée dans un ordre qui fait que je parcours tous les noeuds en largeur, et chaque feuille vient s'intercaller derrière le noeud qui lui est associé.
+        Cela n'est pas optimal car on casse ainsi l'alternance fils gauche fils droit qui fait tout l'interet du parcours en largeur, et on s'oblige à créer des conditions "if" à n'en plus finir, c'est la source de mes erreurs,
+        il faudrait que j'essaie de construire l'arbre autrement, peut etre de distinguer feuilles et noeuds et de tenter un parcours récursif mais je ne voulais plus en entendre parler après MINMAX...
+        J'ai plusieurs solutions, comme déterminer pour chaque noeud s'il est fils gauche ou droit et l'inscrire dans l'objet NOEUD, ou encore partir des feuilles, mais je voyais bien que ma version itérative, bien que pas très propre, n'était pas loin
+        de donner le résultat exact, alors je ne voulais pas lacher mon programme et j'ai fini par abandonner ; je suis pourtant sur qu'il suffit de rajouter une ou deux petites boucles pour que ce soit valable...
+    </p>
+    <img style = "height: 300px; width: auto;"src="TOOLVES_elements/IMG_20201220_031714.jpg">
+    <p class="k">On peut retrouver le parcours suivi grâce à l'arbre dans la zone de texte ci-dessus, je vous en ai dessiné pour plusieurs complexités, mon algorithme ne suffit pas pour un arbre trop profond ou complexe.
+        Par exemple il fonctionne pour MESSAGE ou j'ai pu corriger un bug qui provenait du fait qu'une feuille était seule (l'algorithme peut parfois fonctionner avec deux ou trois embranchements de ce type), mais vous pourrez constater par vous meme
+        qu'on ne peut rentrer que des choses relativement simples
+    </p>
+    </details>
+        <br><br>
+    <p>Et voila, on obtient maintenant table des caractères sous la forme la plus réduite ! 
+    </p>
+    <form name="fin">
+        <textarea type="text" class="form-control" style="height: 100px;" name="table">
+i : 000    : 001  r : 0110  z : 0111  E : 0100  t : 0101  h : 1010  a : 1011  u : 1000  c : 1001  e : 110  n : 111  
+        </textarea>
+    </form> 
+    </div>
+</div>
+<div class ="container-fluid">
+    <div class="container">
+        <form name = "bilan">
+            <p>Message compressé :</p>
+            <input style ="text-align: center;" type = "text" value = "01001110101011011001110011000111110001100110101011000111110"name="output" size = x maxlength = y class="form-control">
+            <p>Poids du message en bits</p>
+            <input style ="text-align: center;" type = "text" value = "poids en ASCII :136 poids optimisé question 1 : 85 poids huffman : 59"name="poids" size = x maxlength = y class="form-control">
+            <p>Decodage du message pour vérifier si ca fonctionne bien</p>
+            <input style ="text-align: center;" type = "text" value = "Entrez une chaine"name="verif" size = x maxlength = y class="form-control">
+        </form>
+        <p>Pour répondre à la question 10, on notera que le site canadien fourni dans le pdf ne produit pas un arbre qui permette de faire correctement l'algorithme de Huffman, en effet il ne se soucie pas du choix des noeuds à additionner en cas d'égalité de poids.</p>
+    </div>
+</div>
+<p>Je termine malheuresement mon compte rendu de culture numérique sur cette note assez décevante, si on avait voulu faire quelque chose de plus efficace nous aurions pu suivre ce corrigé de l'ENIM qui explique assez le bien le problème et la démarche à suivre</p>
+<a class="annexlink" href="TOOLVES_elements/i97fm2c.pdf">PDF expliquant comment faire un codage de Huffman (avec récursivité etc.)</a>
+</body>
+<footer class="container-fluid footer">
+
+</footer>
+    

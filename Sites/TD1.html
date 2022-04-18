@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset ="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MACE Nicolas</title>
+
+	<link rel = "stylesheet" href="TOOLVES_elements/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="TOOLVES_elements/TOOLVES.css">
+</head>
+<header class="container-fluid header">
+	<a style="position: absolute;top:40px;left:90%;"class="stylax"href="Page_Principale.html">Accueil</a>
+	<div class="container">
+		<img style ="width:20%; height:auto; float:left;" src="TOOLVES_elements/Polytech_Angers.png">
+		<h1 style="font-size: 150%; position:absolute;position: absolute;top: 30px; left: 50%;transform: translate(-50%, -50%);">Bienvenue - Compte rendu semestre 3</h1>
+	</div>
+	</header>
+<div class="background">
+	<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+<span></span><span></span><span></span><span></span><span></span><span></span></div>
+<body>
+
+<h1>Bienvenue dans cet espace dédié aux travaux sur Fibonacci</h1>
+</br></br></br>
+<p>Voici les premières questions, ci-dessous un programme qui calcule le n-ieme terme de Fibonacci demandé, en version récursive terminale (il y a un petit ajout pour limiter les dépacements de capacité) la fonction s'appelle calcul dans le code source, elle est direct intégrée au html de TD1 (voir f12)</p>
+
+<script>
+function calcul (variable){
+	if(variable > 30 || variable < 0)
+	{
+		return -1;
+	}
+	if(variable < 2)
+	{
+		return variable;
+	}
+	return calcul(variable - 1) + calcul(variable - 2);
+}
+function fibonacci(){
+	var saisie = document.getElementById("valeur").value;
+	/*if(calcul(saisie) === -1)
+	{
+		alert("J'ai limité a des saisies entre 0 et 30 histoire d'éviter des crash, veuillez utiliser la version itérative à droite");
+		return;
+	}*/
+	var cavamarcher = calcul(saisie);
+	alert("Voici le terme de Fibonacci demandé : "+ cavamarcher);
+}
+</script>
+	<div class="container">
+		<div class="row">
+			<article style ="margin-top: 0;"class="col-5">	
+				<input style ="text-align: center;"id = "valeur" value = "0"type = "text" name="nom" size = x maxlength = y class="entrée">
+				<br><br>
+				<form>
+				<input type="button" id = "bouton" class="btn" value = "Fibonacci récursif terminal" onclick = "fibonacci()">
+				</form>
+				
+				<p>Le problème de la fonction écrite tel quel est qu'elle consomme beaucoup trop de ressources, étant donné qu'elle parcourt deux fois l'intégralité de l'arbre, on va donc préferer écrire une version itérative</p>
+				
+			</article>
+			<article class="col-2">
+
+			</article>
+
+			<article class="col-5">
+				
+				<form name="canard">
+				<input style ="text-align: center;" id = "iterativ" type = "text" value = "0"name="nom" size = x maxlength = y class="entrée">
+				<br><br>
+				<input type="button" id = "bouton" class="btn" value = "Fibonnacci itératif" onclick = "affichage(document.canard.nom.value)">
+				</form>
+				
+				<p>Sur cette version de la fonction, on peut calculer jusqu'au 1476 eme terme avant de dépasser la capacité (dans mon environement en tout cas), on a donc quelque chose d'extremement plus efficace en itératif qu'en récursif (j'ai utilisé une boucle for au lieu d'une boucle while comme demandé plus loin dans le td, j'espere que vous ne m'en voudrez pas)</p>
+			
+			</article>
+			
+		</div>
+	</div>
+	
+<script>
+		function affichage(value)
+		{
+			alert("Voici le terme demandé, avec la fonction itérative, on peut calculer plus de termes sans crash, pour les grands nombres c'est plus rapide également : "+iterativfunction(value));
+		}
+		function iterativfunction(saisie){
+		//var saisie = document.getElementById("iterativ").value;
+		let c = 0;
+		if (saisie <= 2)
+		{
+			if(saisie<0)
+			{
+				alert("La suite de Fibonacci, par définition d'une suite, ne comprend pas de termes négatifs");
+			}
+			else if(saisie==0)
+			{
+				c = 0;
+			}
+			else if(saisie==1)
+			{
+				c = 1;
+			}
+			else if(saisie==2)
+			{
+				c = 1;
+			}
+		} 
+		else
+		{
+			let a = 1;
+			let b = 1;
+			for(let i = 2;i<saisie;i++)
+			{
+				c = a+b;
+				a=b;
+				b=c;
+			}
+		}
+	return c;	
+	}
+</script>
+
+<div class="container-fluid">
+	<div clas="container">
+		<article>
+			<p>Nous allons maintenant résoudre la question finale de ce TD, à savoir proposer un programme qui permet de coder et décoder un texte simple avec le codage de fibonacci :</p>
+			<div class="row">
+				<div class="container-fluid col-4">
+					<div class="container">
+						<article>
+							<form name="form2">
+								<input class="entrée" type="text" name="input" size = x maxlength = y value = "Entrez un texte à coder"><br><br>
+								<input type="button" id = "bouton" class="btn" value = "Codage de Fibonacci" onclick = "codage()"><br><br>
+								<input type="text" name="output" value="1000010011000000100111001001001110100010011101010000111010101001100101011010100100110000001001100101011100100100111010100001101001010011100100100111010100001100101011101000101011001010110100100001110000010011001010000111010100001110100010011"class="form-control"><input type="button" value="Réinitialiser" class="btn" onclick="reset1()"><br><br>
+								<p>J'ai considéré la valeur en ASCII étendu des caractères (on peut rentrer des accents et caracteres speciaux).
+								   Cette fonction ré-appelle la fonction itérative précedente, et utilise une simple boucle pour soustraire les différents termes de le suite de fibonacci.
+								</p>
+							</form>
+						</article>
+					</div>
+				</div>
+				<article class = "col-3">
+					<img style="height:10%;width: auto;" src = "TOOLVES_elements/411px-ASCII_logo.svg.png">
+	
+				</article>
+				<div class="container-fluid col-4">
+					<div class="container">
+						<article>
+							<form name="terminado">
+								<input class="entrée" type="text" name="input"size="x" maxlength="y" value ="1000010011000000100111001001001110100010011101010000111010101001100101011010100100110000001001100101011100100100111010100001101001010011100100100111010100001100101011101000101011001010110100100001110000010011001010000111010100001110100010011"><br><br>
+								<input type="button" class="btn" value = "Décodage de Fibonacci" onclick = "Décodage()"><br><br>
+								<input type="text" name="output" value="Entrez un texte à coder"class="form-control"><input type="button" value="Réinitialiser" class="btn" onclick="reset2()"><br><br>
+								
+									<p>Ca a été un tout petit peu plus compliqué pour celui-ci, il a fallu tout parcourir, vérifier a chaque fois si le caractere actif et le suivant sont un 1, ce qui signifie une fin de chaine.
+									A chaque fin de chaine trouvée, il faut retenir l'indice de cette fin, puis parcourir a l'envers en additionnant les termes de fibonacci correspondants.
+									On obtient ainsi un nombre, que l'on transforme en ASCII pour revenir a la chaine initiale.
+									</p>
+								
+							</form>
+						</article>
+					</div>
+				</div>
+			</div>
+		</article>
+		<p>Ce TD m'aura été assez utile, il m'a permis de comprendre les bases du javascript que je n'avais jamais pratiqué avant</p>
+	</div>
+</div>
+<footer class="container-fluid footer">
+	
+</footer>
+
+<script>
+	function reset2()
+	{
+		document.terminado.output.value = "";
+		document.terminado.input.value = "";
+	}
+	function reset1()
+	{
+		document.form2.output.value = "";
+		document.form2.input.value = "";
+	}
+	function codage()
+	{
+		var chaine = document.form2.input.value;
+		//const result = chaine.charCodeAt(0);
+		
+		
+		var x = chaine.length;
+		var char;
+		var maxfibo;
+		var indexdumax;
+		document.form2.output.value = "";
+		var final = "";
+		for(let i=0;i<x;i++)
+		{
+			document.form2.output.value = 1;
+			char = chaine.charCodeAt(i);
+			//console.log(`${char}`);
+			for(let j=0;iterativfunction(j)<=char;j++)
+			{
+				maxfibo = iterativfunction(j);
+				indexdumax = j;
+			}
+			//console.log(maxfibo);
+			//console.log(indexdumax);
+			for(let j = indexdumax;j>1;j--)
+			{
+				if((char - iterativfunction(j))>=0)
+				{
+					char = char - iterativfunction(j);
+					document.form2.output.value = 1 + document.form2.output.value;
+				}
+				else
+				{
+					document.form2.output.value = 0 + document.form2.output.value;
+				}	
+			}
+			final += document.form2.output.value;
+		}
+		document.form2.output.value = final;
+	}
+
+function Décodage()
+{
+	var chaine = document.terminado.input.value;
+	document.terminado.output.value = "";
+	var x = chaine.length;
+	var futurchar;
+	var activechar;
+	var k = -1;
+	var nombre = 0;
+	for(let i = 0;i<x;i++)
+	{
+		activechar = chaine.charAt(i);
+		if((activechar!=0 && activechar!=1) || activechar == " ")
+		{
+			alert("Erreur, il n'y a pas que des 0 et des 1");
+			return;
+		}
+		else
+		{
+			futurchar = chaine.charAt(i+1);
+			console.log("activechar : "+activechar);
+			console.log("futurchar : "+futurchar);
+			if((futurchar==1)&&(futurchar==activechar))
+			{
+				//console.log("test");
+				
+				for(let j  = i;j>k;j--)
+				{
+					console.log("j:"+j);
+					if(chaine.charAt(j)==1)
+					{
+						nombre += iterativfunction(j+1-k);
+						console.log("nombre :"+nombre);
+					}
+
+				}
+
+				document.terminado.output.value += String.fromCharCode(nombre);
+				
+				nombre = 0;
+				k = i+1;
+				i=k+1;
+				console.log("k:"+k);
+				console.log("i:"+i);
+			}
+		}
+		
+	}
+
+}
+</script>
+
+</body>
+</html>

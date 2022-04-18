@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset ="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TOOLVES.COM</title>
+
+	<link rel = "stylesheet" href="TOOLVES_elements/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="TOOLVES_elements/TOOLVES.css">
+</head>
+<header class="container-fluid header">
+	<a style="position: absolute;top:40px;left:90%;" href="Page_Principale.html" class="stylax">Accueil</a>
+	<div class="container">
+		<img style ="width:20%; height:auto; float:left;" src="TOOLVES_elements/Polytech_Angers.png">
+		<h1 style="font-size: 150%; position:absolute;position: absolute;top: 30px; left: 50%;transform: translate(-50%, -50%);">Bienvenue - Compte rendu semestre 3</h1>
+	</div>
+</header>
+    <script src = "TOOLVES_elements/arith.js"></script>
+    <div class="background">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+<div class ="container-fluid">
+    <div class="container">
+		<h1>
+			Bienvenue dans le TD sur l'évaluation d'une expression arithmétique
+		</h1>
+    </div>
+</div>
+<div class ="container-fluid">
+    <div class="container">
+		<div class = "row">
+			
+				<div class = "container-fluid col-6">
+					<div class="container">
+						<article>
+						<p>
+							Entrez une "expression arithmétique infixe parenthésée" (pas d'espaces, ni de flottants, expressions mathématiques autres que par les opérateurs + * / -)
+						</p>
+						<form name = "arithmetique">
+							<input type="text" size="x" maxlength="y" name="input" value="(3-2*9/2+7)*((1-3+4-2*8*6)*(5-3))" class="form-control">
+							<input type="button" class="btn" value = "Evaluer l'expression" onclick = "Traitement(document.arithmetique.input.value)">
+						</form>
+					</article>
+					</div>
+				</div>
+			
+
+			
+				<div class = "container-fluid col-6">
+					<div class="container">
+						<article>
+						<p>
+							Traitement de l'expression : 
+						</p>
+						<form name = "arithmetique2">
+							<p>Expression postfixe :</p>
+							<input type="text" size="x" maxlength="y" name="postfixe" class="form-control" value="329*2/-7+13-4+28*6*-53-**">
+							<p>Valeur retournée :</p>
+							<input type="text" size="x" maxlength="y" name="eval" class="form-control" value="-188">
+						</form>
+					</article>
+					</div>
+				</div>
+			
+		</div>
+    </div>
+</div>
+<br><br><br>
+<div class = "container-fluid">
+	<div class ="container">
+		<input type="button" id = "bouton" class="btn" value = "Réinitialiser" onclick = "Reset()">
+		<script>function Reset(){document.arithmetique.input.value="";document.arithmetique2.postfixe.value="";document.arithmetique2.eval.value="";}</script>
+	</div>
+</div>
+<div class = "container-fluid">
+	<div class ="container">
+		<details><summary>Details de ce TD</summary>
+			<p class="k">
+				Pour réaliser ce TD, j'ai commencé par écrire ma fonction "Transformpostfixe"
+				qui récupère l'expression infixe et renvoie l'expression postfixe, pour ce faire j'ai traduit le modèle proposé dans le TD en javascript.<br><br>
+				Pour la fonction "Evaluation" qui calcule ensuite la valeur de l'expression postfixe, j'ai également suivi les instructions du TD, j'ai rencontré une toute petite difficulté
+				liée au javascript : l'opérateur "+" sert aussi bien à additionner qu'à concatener, j'ai donc du réajuster en précisant que les élements de ma pile étaient des flottants. 
+				<br><br>
+				On aurait pu vérifier que l'expression est correctement rentrée (pas de parenthèses en trop par exemple ou opérateurs mal placés), ou ajouter les nombres flottants afin d'améliorer
+				un peu la qualité du programme, on aurait également pu laisser l'utilisateur utiliser des nombres et pas uniquement des chiffres (entre 0 et 9), mais ici on a simplement fait ce qui était demandé dans le but de valider le TD.
+			</p>
+		</details>
+	</div>
+</div>
+
+
+    
